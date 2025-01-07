@@ -1,0 +1,1 @@
+{"root":["./src/index.ts","./src/controllers/appointmentcontroller.ts","./src/middlewares/validatedata.ts","./src/models/appointmentsschema.ts","./src/routes/appointmentroutes.ts"],"version":"5.7.2"}

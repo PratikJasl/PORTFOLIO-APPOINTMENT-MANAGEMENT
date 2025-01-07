@@ -16,10 +16,10 @@ datasource db {
 model Appointment {
   id                Int @id @default(autoincrement())
   fullName          String
-  email             String 
+  email             String @unique
   phone             String 
   appointmentDate   DateTime
-  appointementTime  DateTime
+  appointmentTime   DateTime
   status            AppointmentStatus @default(PENDING)
   notes             String?
   createdAt         DateTime @default(now())
