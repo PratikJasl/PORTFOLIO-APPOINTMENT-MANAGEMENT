@@ -1,5 +1,5 @@
 import { Router, Request, Response } from "express";
-import { createAppointment, getAppointment } from "../controllers/appointmentController";
+import { createAppointment, getAppointment, getAppointmentById } from "../controllers/appointmentController";
 import validateData  from "../middlewares/validateData";
 
 const router = Router();
@@ -9,8 +9,10 @@ const router = Router();
 //Create Appointment Route:
 router.post('/appointments', validateData, createAppointment);
 
-//Fetch Appointement Route:
+//Fetch Appointment Route with pagination:
 router.get('/appointment', getAppointment);
 
+//Fetch Appointments with Id:
+router.get('/appointment:id', getAppointmentById);
 
 export {router}

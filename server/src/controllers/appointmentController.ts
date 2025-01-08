@@ -6,7 +6,6 @@ const prisma = new PrismaClient();
 //function to create a new Appointment.
 export async function createAppointment(req: Request, res: Response){
     //console.log("received response", req.body);
-
     const {
         fullName,
         email,
@@ -52,5 +51,9 @@ export async function createAppointment(req: Request, res: Response){
 }
 
 export async function getAppointment(req: Request, res: Response){
+    
+}
+
+export async function getAppointmentById(req: Request, res: Response){
     
 }

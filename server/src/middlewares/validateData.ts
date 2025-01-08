@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { appointmentSchema } from "../models/appointmentsSchema";
 
+//Middleware to update the incoming Data. Utilizes JOI for schema validation.
 function validateData(req: Request, res: Response, next: NextFunction): void{
     const {
         fullName,
