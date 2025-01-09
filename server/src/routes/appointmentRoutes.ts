@@ -10,7 +10,7 @@ const router = Router();
 router.post('/appointments', validateData, createAppointment);
 
 //Fetch Appointment Route with pagination:
-router.get('/appointment', getAppointment);
+router.get('/appointments', getAppointment);
 
 //Fetch Appointments with Id:
 router.get('/appointment:id', getAppointmentById);

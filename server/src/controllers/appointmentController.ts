@@ -50,8 +50,19 @@ export async function createAppointment(req: Request, res: Response){
     }
 }
 
+//Function to fetch the appointment data. Implement Pagination here to improve performance.
 export async function getAppointment(req: Request, res: Response){
-    
+    try {
+        console.log("request Received");
+        let result = await prisma.appointment.findMany({take: 100});
+        if(result){
+            console.log('Result of Fetch:', fetch);
+            res.status(200).json(result);
+        }
+    } catch (error) {
+        console.log('Error while fetching data');
+        res.status(500).json({message: "Unable to fetch data", error});
+    }
 }
 
 export async function getAppointmentById(req: Request, res: Response){
