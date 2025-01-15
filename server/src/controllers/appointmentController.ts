@@ -51,13 +51,39 @@ export async function createAppointment(req: Request, res: Response){
 }
 
 //Function to fetch the appointment data. Implement Pagination here to improve performance.
+//Step1: To implement pagination, we divide the total data into pages.
+//Step2: From the front end we send the page we require along with the limit in one page.
+//Step3: We only fetch the page specified with the required amount of data.
+//Step4: We send pagination metadata along with result to the front-end.
+
 export async function getAppointment(req: Request, res: Response){
     try {
         console.log("request Received");
-        let result = await prisma.appointment.findMany({take: 100});
+        let page = parseInt(req.query.page as string) || 1; //Current Page number.
+        let limit = parseInt(req.query.limit as string) || 10; //No'of records per page.
+
+        const startIndex = (page-1) * limit; //Determines where to start.
+        const take = limit;
+
+        let result = await prisma.appointment.findMany({ //fetch from startindex, limit no' of records
+            skip: startIndex, 
+            take: limit,
+        })
+
+        const totalAppointments = await prisma.appointment.count();
+
+        const totalPages = Math.ceil(totalAppointments / limit);
+
         if(result){
-            console.log('Result of Fetch:', fetch);
-            res.status(200).json(result);
+            res.status(200).json({
+                data: result,
+                pagination: {
+                    currentPage: page,
+                    totalPages: totalPages,
+                    totalAppointments: totalAppointments,
+                    limit: limit,
+                },
+            });
         }
     } catch (error) {
         console.log('Error while fetching data');
