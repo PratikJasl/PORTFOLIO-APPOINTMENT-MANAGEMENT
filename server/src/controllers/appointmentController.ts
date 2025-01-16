@@ -53,11 +53,12 @@ export async function createAppointment(req: Request, res: Response){
 //Function to fetch the appointment data. Implement Pagination here to improve performance.
 export async function getAppointment(req: Request, res: Response){
     try {
+
         let page = parseInt(req.query.page as string) || 1; //Current Page number.
         let limit = parseInt(req.query.limit as string) || 10; //No'of records per page.
 
         const startIndex = (page-1) * limit; //Determines where to start.
-        const take = limit;
+        // const take = limit;
 
         let result = await prisma.appointment.findMany({ //fetch from startindex, to limit no' of records
             skip: startIndex, 
