@@ -154,8 +154,8 @@ export async function updateAppointment(req: Request, res: Response){
         })
 
         if(result){
-            console.log('Appointement deleted successfully', result);
-            res.status(200).json({msg: "Appointment deleted successfully", result});
+            console.log('Appointement Updated successfully', result);
+            res.status(200).json({msg: "Appointment Updated successfully", result});
             return;
         }else {
             res.status(404).json({ msg: 'Appointment not found' });
@@ -163,8 +163,8 @@ export async function updateAppointment(req: Request, res: Response){
         }
 
     } catch (error) {
-        console.log('Error occured while deletion:', error);
-        res.status(500).json({msg:'Error occured while deletion', error: error});
+        console.log('Error occured while Updation:', error);
+        res.status(500).json({msg:'Error occured while Updation', error: error});
         return;
     }
 }
