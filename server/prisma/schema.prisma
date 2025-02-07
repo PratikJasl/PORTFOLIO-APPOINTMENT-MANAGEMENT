@@ -30,3 +30,11 @@ enum AppointmentStatus{
   PENDING
   COMPLETED
 }
+
+model User {
+  id                Int @id @default(autoincrement())
+  fullName          String
+  email             String @unique
+  phone             String @unique
+  password          String
+}

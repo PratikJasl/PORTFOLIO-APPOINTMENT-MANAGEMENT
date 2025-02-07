@@ -13,3 +13,5 @@ AuthRouter.post('/auth/signup');
 AuthRouter.post('/auth/logout');
 
 AuthRouter.post('/auth/reset');
+
+export {AuthRouter}
