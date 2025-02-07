@@ -1,5 +1,5 @@
 import express from 'express';
-import {router as appointmentRoutes} from './routes/appointmentRoutes';
+import {AppointemntRouter as appointmentRoutes} from './routes/appointmentRoutes';
 
 const port = 3000;
 const app = express();

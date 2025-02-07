@@ -1,18 +1,21 @@
 import { Router, Request, Response } from "express";
-import { createAppointment, getAppointment, getAppointmentById } from "../controllers/appointmentController";
+import { createAppointment, getAppointment, removeAppointment, updateAppointment } from "../controllers/appointmentController";
 import validateData  from "../middlewares/validateData";
 
-const router = Router();
+const AppointemntRouter = Router();
 
 //Appointment Routes:
 
 //Create Appointment Route:
-router.post('/appointments', validateData, createAppointment);
+AppointemntRouter.post('/appointments', validateData, createAppointment);
 
 //Fetch Appointment Route with pagination:
-router.get('/appointments', getAppointment);
+AppointemntRouter.get('/appointments', getAppointment);
 
-//Fetch Appointments with Id:
-router.get('/appointment:id', getAppointmentById);
+//Remove Appointment by ID:
+AppointemntRouter.post('/appointments/remove', removeAppointment);
 
-export {router}
+//Update Appoinement by ID:
+AppointemntRouter.post('/appointments/update', updateAppointment);
+
+export {AppointemntRouter}

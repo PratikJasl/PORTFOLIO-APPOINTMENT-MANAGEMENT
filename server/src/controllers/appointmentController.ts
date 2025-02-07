@@ -86,6 +86,88 @@ export async function getAppointment(req: Request, res: Response){
     }
 }
 
-export async function getAppointmentById(req: Request, res: Response){
-    
+//Function to Delete appoinments by their ID's.
+export async function removeAppointment(req: Request, res: Response){
+    try {
+        let id = parseInt(req.query.id as string);
+        console.log('Received ID is:',id);
+
+        if(!id) {
+            res.status(400).json({ msg: 'Appointment ID is required' });
+            return;
+        }
+
+        if(typeof id !== 'number'){
+            res.status(400).json({ msg: 'Invalid Appointment ID format' });
+            return;
+        }
+
+        let result = await prisma.appointment.delete({
+            where: {
+                id: id
+            }
+        });
+
+        if(result){
+            console.log('Appointement deleted successfully', result);
+            res.status(200).json({msg: "Appointment deleted successfully", result});
+            return;
+        }else {
+            res.status(404).json({ msg: 'Appointment not found' });
+            return;
+        }
+
+    } catch (error) {
+        console.log('Error occured while deletion:', error);
+        res.status(500).json({msg:'Error occured while deletion', error: error});
+        return;
+    }
+}
+
+export async function updateAppointment(req: Request, res: Response){
+    try {
+        let id = parseInt(req.query.id as string);
+        let status = req.query.status;
+        console.log('Received ID is:',id);
+        console.log('Status revceived is:',status);
+        console.log('Type of status:', typeof(status));
+
+        if(!id) {
+            res.status(400).json({ msg: 'Appointment ID is required' });
+            return;
+        }
+
+        if(typeof id !== 'number'){
+            res.status(400).json({ msg: 'Invalid Appointment ID format' });
+            return;
+        }
+
+        if((typeof status !== 'string') || (status !== 'PENDING' && status !== 'COMPLETED')){
+            res.status(400).json({ msg: 'Invalid Appointment status format' });
+            return;
+        }
+
+        let result = await prisma.appointment.update({
+            where: {
+                id: id
+            },
+            data:{
+                status: status
+            }
+        })
+
+        if(result){
+            console.log('Appointement deleted successfully', result);
+            res.status(200).json({msg: "Appointment deleted successfully", result});
+            return;
+        }else {
+            res.status(404).json({ msg: 'Appointment not found' });
+            return;
+        }
+
+    } catch (error) {
+        console.log('Error occured while deletion:', error);
+        res.status(500).json({msg:'Error occured while deletion', error: error});
+        return;
+    }
 }
