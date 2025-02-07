@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 import {AppointemntRouter as appointmentRoutes} from './routes/appointmentRoutes';
 import {AuthRouter} from './routes/authRoutes';
 
@@ -8,6 +9,7 @@ const app = express();
 
 //Middlewares:
 app.use(express.json());
+app.use(cookieParser());
 app.use(cors({credentials: true}));
 
 //Routes:
