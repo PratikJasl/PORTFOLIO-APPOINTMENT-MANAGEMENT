@@ -128,9 +128,6 @@ export async function updateAppointment(req: Request, res: Response){
     try {
         let id = parseInt(req.query.id as string);
         let status = req.query.status;
-        console.log('Received ID is:',id);
-        console.log('Status revceived is:',status);
-        console.log('Type of status:', typeof(status));
 
         if(!id) {
             res.status(400).json({ msg: 'Appointment ID is required' });
