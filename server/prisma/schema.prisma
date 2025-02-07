@@ -32,9 +32,14 @@ enum AppointmentStatus{
 }
 
 model User {
-  id                Int @id @default(autoincrement())
-  fullName          String
-  email             String @unique
-  phone             String @unique
-  password          String
+  id                  Int @id @default(autoincrement())
+  fullName            String
+  email               String @unique
+  phone               String @unique
+  password            String
+  verifyOtp           String @default("")
+  verifyOtpExpiredAt  Int @default(0)
+  isVerified          Boolean @default(false)
+  resetOtp            String @default("")
+  resetOtpExpiredAt   Int @default(0)
 }
