@@ -58,8 +58,46 @@ export async function SignUp(req: Request, res: Response){
     }
 }
 
-export async function LogIn(){
+export async function LogIn(req: Request, res: Response){
+    let {email, password} = req.body;
 
+    if(!email || !password){
+        res.status(400).json({success: "false", message: "Missing required fields"});
+        return
+    }
+
+    try {
+        let user = await prisma.user.findUnique({
+            where: {
+                email: email
+            }
+        });
+
+        if(!user){
+            res.status(400).json({success: "false", message: "User Does not exist"});
+            return
+        }
+
+        if(user){
+            const isMatch = await bcrypt.compare(password, user.password);
+            if(!isMatch){
+               res.status(400).json({success: "false", message: "Incorrect Password"}); 
+               return;
+            }
+
+            const token = jwt.sign({ id: user.id}, process.env.JWT_SECRET as string, {expiresIn: '7d'});
+
+            res.cookie('token', token, {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === 'production',
+                sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
+                maxAge: 7 * 24 * 60 * 60 * 1000
+            }).json({success: "true", message: "User Created Successfully"});
+            return;
+        }
+    } catch (error) {
+        res.json(500).json({success: "false", message: "Something Went Wrong", detatils: error})
+    }
 }
 
 export async function LogOut(){
