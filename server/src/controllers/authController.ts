@@ -92,16 +92,27 @@ export async function LogIn(req: Request, res: Response){
                 secure: process.env.NODE_ENV === 'production',
                 sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
                 maxAge: 7 * 24 * 60 * 60 * 1000
-            }).json({success: "true", message: "User Created Successfully"});
+            }).json({success: "true", message: "User LogedIn Successfully"});
             return;
         }
     } catch (error) {
-        res.json(500).json({success: "false", message: "Something Went Wrong", detatils: error})
+        res.json(500).json({success: "false", message: "Something Went Wrong", detatils: error});
+        return
     }
 }
 
-export async function LogOut(){
-
+export async function LogOut(req: Request, res: Response){
+    try {
+        res.clearCookie('token', {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
+        }).json({success: "true", message: "User LogedOut Successfully"});
+        return;
+    } catch (error) {
+        res.json(500).json({success: "false", message: "Something Went Wrong", detatils: error});
+        return; 
+    }
 }
 
 export async function ResetPassword(){
