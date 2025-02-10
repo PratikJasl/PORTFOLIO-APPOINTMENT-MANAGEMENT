@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import transporter from "../config/nodeMailer";
 
 const prisma = new PrismaClient();
 
@@ -23,12 +24,12 @@ export async function SignUp(req: Request, res: Response){
         })
 
         if(existingUser){
-            res.status(400).json({ success: "false", message: "User already exists" });
+            res.status(400).json({ success: "false", message: "User Email already exists" });
             return;
         }
 
         if(existingPhone){
-            res.status(400).json({ success: "false", message: "Phone number already exists" });
+            res.status(400).json({ success: "false", message: "User Phone number already exists" });
             return;
         }
         
@@ -50,7 +51,23 @@ export async function SignUp(req: Request, res: Response){
             secure: process.env.NODE_ENV === 'production',
             sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
             maxAge: 7 * 24 * 60 * 60 * 1000
-        }).json({success: "true", message: "User Created Successfully"});
+        })
+
+        const mailOptions = {
+            from: process.env.SENDER_EMAIL,
+            to: email,
+            subject: 'Welcome!! Thanks for Signing Up',
+            text: 
+            `Hi ${fullName}👋, 
+             We're thrilled to have you on board. Your account has been created with email id 📧: ${email}.
+            
+             Best Regards
+             Pratik Jussal`
+        }
+        await transporter.sendMail(mailOptions);
+
+        res.json({success: "true", message: "User Created Successfully"});
+        return 
 
     } catch (error) {
         res.status(500).json({ success: "false", message: "Something Went Wrong, Make Sure Email and Phone are Unique", detail: error });
