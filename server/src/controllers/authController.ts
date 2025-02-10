@@ -9,15 +9,16 @@ const prisma = new PrismaClient();
 export async function SignUp(req: Request, res: Response){
     let {fullName, email, phone, password} = req.body;
 
-    if(!fullName || !email || !password || !phone){
-        res.status(400).json({ success: "false", message: "Missing required fields" });
-        return;
-    }
-
     try {
         let existingUser = await prisma.user.findUnique({
             where: {
                 email: email,
+            }
+        })
+
+        let existingPhone = await prisma.user.findUnique({
+            where: {
+                phone: phone,
             }
         })
 
@@ -26,6 +27,11 @@ export async function SignUp(req: Request, res: Response){
             return;
         }
 
+        if(existingPhone){
+            res.status(400).json({ success: "false", message: "Phone number already exists" });
+            return;
+        }
+        
         let hashedPassword = await bcrypt.hash(password, 10);
 
         let newUser = await prisma.user.create({
