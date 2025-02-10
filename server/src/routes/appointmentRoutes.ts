@@ -1,13 +1,13 @@
 import { Router, Request, Response } from "express";
 import { createAppointment, getAppointment, removeAppointment, updateAppointment } from "../controllers/appointmentController";
-import validateData  from "../middlewares/validateData";
+import validateAppointmentData  from "../middlewares/validateAppointmentData";
 
 const AppointemntRouter = Router();
 
 //Appointment Routes:
 
 //Create Appointment Route:
-AppointemntRouter.post('/appointments', validateData, createAppointment);
+AppointemntRouter.post('/appointments', validateAppointmentData, createAppointment);
 
 //Fetch Appointment Route with pagination:
 AppointemntRouter.get('/appointments', getAppointment);

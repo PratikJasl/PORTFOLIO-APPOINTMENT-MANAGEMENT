@@ -1,5 +1,6 @@
 import { Router, Request, Response } from "express";
 import { SignUp } from "../controllers/authController";
+import { validateUserData } from "../middlewares/validateUserData";
 
 const AuthRouter = Router();
 
@@ -8,7 +9,7 @@ const AuthRouter = Router();
 //Create Appointment Route:
 AuthRouter.post('/auth/login');
 
-AuthRouter.post('/auth/signup', SignUp);
+AuthRouter.post('/auth/signup',validateUserData, SignUp);
 
 AuthRouter.post('/auth/logout');
 
