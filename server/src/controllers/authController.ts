@@ -7,9 +7,9 @@ const prisma = new PrismaClient();
 
 
 export async function SignUp(req: Request, res: Response){
-    let {name, email, phone, password} = req.body;
+    let {fullName, email, phone, password} = req.body;
 
-    if(!name || !email || !password || !phone){
+    if(!fullName || !email || !password || !phone){
         res.status(400).json({ success: "false", message: "Missing required fields" });
         return;
     }
@@ -17,7 +17,7 @@ export async function SignUp(req: Request, res: Response){
     try {
         let existingUser = await prisma.user.findUnique({
             where: {
-                email: email
+                email: email,
             }
         })
 
@@ -30,7 +30,7 @@ export async function SignUp(req: Request, res: Response){
 
         let newUser = await prisma.user.create({
             data: {
-                fullName: name,
+                fullName: fullName,
                 email: email,
                 phone: phone,
                 password: hashedPassword
@@ -47,13 +47,13 @@ export async function SignUp(req: Request, res: Response){
         }).json({success: "true", message: "User Created Successfully"});
 
     } catch (error) {
-        res.status(500).json({ success: "false", message: "Something Wrong, Try Again" });
+        res.status(500).json({ success: "false", message: "Something Went Wrong, Make Sure Email and Phone are Unique", detail: error });
         return;
     }
 }
 
 export async function LogIn(){
-    
+
 }
 
 export async function LogOut(){
