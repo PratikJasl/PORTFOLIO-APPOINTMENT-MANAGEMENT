@@ -141,18 +141,18 @@ export async function sendVerifyOTP(req: Request, res: Response){
             return;
         }
         
-        const existingUser = await prisma.user.findUnique({
+        const user = await prisma.user.findUnique({
             where:{
                 id: userID,
             }
         });
         
-        if(!existingUser){
+        if(!user){
             res.status(400).json({ success: "false", message: "User not found"});
             return;
         }
 
-        if(existingUser.isVerified){
+        if(user.isVerified){
             res.status(400).json({ success: "false", message: "Account already verified"});
             return;
         }
@@ -172,10 +172,10 @@ export async function sendVerifyOTP(req: Request, res: Response){
         
         const mailOptions = {
             from: process.env.SENDER_EMAIL,
-            to: existingUser.email,
+            to: user.email,
             subject: 'Account Verification OTP',
             text: 
-            `Hi ${existingUser.fullName}👋, 
+            `Hi ${user.fullName}👋, 
              Your account verification OTP is: ${OTP}.
             
              Best Regards
@@ -185,8 +185,59 @@ export async function sendVerifyOTP(req: Request, res: Response){
         await transporter.sendMail(mailOptions);
 
         res.json({success: "true", message: "Verification Email Send Successfully"});
-        return 
+        return;
     }catch(error){
+        res.status(500).json({ success: "false", message: "Something Went Wrong", detail: error });
+        return;
+    }
+}
+
+export async function verifyEmail(req: Request, res: Response){
+    const {userID, OTP} = req.body;
+
+    if(!userID || !OTP){
+        res.status(400).json({ success: false, message: "Missing Required Fields" });
+        return;
+    }
+
+    try {
+        const user = await prisma.user.findUnique({
+            where:{
+                id: userID,
+            }
+        });
+        console.log(user);
+        if(!user){
+            res.status(400).json({ success: "false", message: "User not found"});
+            return;
+        }
+
+        if(user.verifyOtp === '' || user.verifyOtp !== OTP){
+            res.status(400).json({ success: "false", message: "Invalid OTP"});
+            return;
+        }
+
+        if(user.verifyOtpExpiredAt.getTime() < Date.now()){
+            res.status(400).json({ success: "false", message: "OTP Expired"});
+            return;
+        }
+
+        const date = new Date (Date.now());
+        await prisma.user.update({
+            where:{
+                id: userID,
+            },
+            data:{
+                isVerified: true,
+                verifyOtp: '',
+                verifyOtpExpiredAt: date,
+            }
+        });
+
+        res.json({success: "true", message: "Email Verified Successfully"});
+        return;
+    } catch (error) {
+        console.log(error);
         res.status(500).json({ success: "false", message: "Something Went Wrong", detail: error });
         return;
     }
