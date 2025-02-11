@@ -38,8 +38,8 @@ model User {
   phone               String @unique
   password            String
   verifyOtp           String @default("")
-  verifyOtpExpiredAt  Int @default(0)
+  verifyOtpExpiredAt  DateTime @default(now())
   isVerified          Boolean @default(false)
   resetOtp            String @default("")
-  resetOtpExpiredAt   Int @default(0)
+  resetOtpExpiredAt   DateTime @default(now())
 }

@@ -132,6 +132,63 @@ export async function LogOut(req: Request, res: Response){
     }
 }
 
-export async function ResetPassword(){
-    
+export async function sendVerifyOTP(req: Request, res: Response){
+    try{
+        const { userID } = req.body;
+
+        if (!userID) {
+            res.status(400).json({ success: false, message: "User ID is required" });
+            return;
+        }
+        console.log("UserID", userID);
+        const existingUser = await prisma.user.findUnique({
+            where:{
+                id: userID,
+            }
+        });
+        console.log("ExistingUser:", existingUser);
+        if(!existingUser){
+            res.status(400).json({ success: "false", message: "User not found"});
+            return;
+        }
+
+        if(existingUser.isVerified){
+            res.status(400).json({ success: "false", message: "Account already verified"});
+            return;
+        }
+
+        const OTP = String(Math.floor(100000 + Math.random() * 900000));
+        const otpExpiry = new Date(Date.now() + 24 * 60 * 60 * 1000);
+        console.log("OTP, Expiry", OTP, otpExpiry);
+        let result = await prisma.user.update({
+            where:{
+                id: userID,
+            },
+            data:{
+                verifyOtp: OTP,
+                verifyOtpExpiredAt: otpExpiry,
+            }
+        });
+        console.log(result);
+        const mailOptions = {
+            from: process.env.SENDER_EMAIL,
+            to: existingUser.email,
+            subject: 'Account Verification OTP',
+            text: 
+            `Hi ${existingUser.fullName}👋, 
+             Your account verification OTP is: ${OTP}.
+            
+             Best Regards
+             Pratik Jussal`
+        }
+
+        await transporter.sendMail(mailOptions);
+
+        res.json({success: "true", message: "Verification Email Send Successfully"});
+        return 
+    }catch(error){
+        console.log(error);
+        res.status(500).json({ success: "false", message: "Something Went Wrong", detail: error });
+        return;
+    }
 }
