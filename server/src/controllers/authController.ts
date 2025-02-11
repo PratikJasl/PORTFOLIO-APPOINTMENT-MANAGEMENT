@@ -140,13 +140,13 @@ export async function sendVerifyOTP(req: Request, res: Response){
             res.status(400).json({ success: false, message: "User ID is required" });
             return;
         }
-        console.log("UserID", userID);
+        
         const existingUser = await prisma.user.findUnique({
             where:{
                 id: userID,
             }
         });
-        console.log("ExistingUser:", existingUser);
+        
         if(!existingUser){
             res.status(400).json({ success: "false", message: "User not found"});
             return;
@@ -159,8 +159,8 @@ export async function sendVerifyOTP(req: Request, res: Response){
 
         const OTP = String(Math.floor(100000 + Math.random() * 900000));
         const otpExpiry = new Date(Date.now() + 24 * 60 * 60 * 1000);
-        console.log("OTP, Expiry", OTP, otpExpiry);
-        let result = await prisma.user.update({
+        
+        await prisma.user.update({
             where:{
                 id: userID,
             },
@@ -169,7 +169,7 @@ export async function sendVerifyOTP(req: Request, res: Response){
                 verifyOtpExpiredAt: otpExpiry,
             }
         });
-        console.log(result);
+        
         const mailOptions = {
             from: process.env.SENDER_EMAIL,
             to: existingUser.email,
@@ -187,7 +187,6 @@ export async function sendVerifyOTP(req: Request, res: Response){
         res.json({success: "true", message: "Verification Email Send Successfully"});
         return 
     }catch(error){
-        console.log(error);
         res.status(500).json({ success: "false", message: "Something Went Wrong", detail: error });
         return;
     }
