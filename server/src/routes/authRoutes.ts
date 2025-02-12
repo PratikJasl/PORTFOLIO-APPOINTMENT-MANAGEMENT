@@ -1,4 +1,4 @@
-import { Router, Request, Response } from "express";
+import { Router } from "express";
 import { LogIn, LogOut, sendVerifyOTP, SignUp, verifyEmail } from "../controllers/authController";
 import { validateUserData } from "../middlewares/validateUserData";
 import { userAuth } from "../middlewares/userAuth";
@@ -14,8 +14,8 @@ AuthRouter.post('/auth/login', LogIn);
 
 AuthRouter.post('/auth/logout', LogOut);
 
-AuthRouter.post('/auth/verifyotp', userAuth, sendVerifyOTP);
+AuthRouter.post('/auth/verify-otp', userAuth, sendVerifyOTP);
 
-AuthRouter.post('/auth/verifyemail', userAuth, verifyEmail);
+AuthRouter.post('/auth/verify-account', userAuth, verifyEmail);
 
 export {AuthRouter}
