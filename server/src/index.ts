@@ -3,6 +3,7 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import {AppointemntRouter as appointmentRoutes} from './routes/appointmentRoutes';
 import {AuthRouter} from './routes/authRoutes';
+import { userRouter } from './routes/userRoutes';
 import { Request, Response } from 'express';
 
 const port = 3000;
@@ -17,7 +18,7 @@ app.use(cors({credentials: true}));
 app.get('/api', (req: Request, res: Response) => {res.send("API Working")});
 app.use('/api', appointmentRoutes);
 app.use('/api', AuthRouter);
-
+app.use('/api', userRouter);
 
 app.listen(port, () =>{
     console.log(`Server listening on port: ${port}`);

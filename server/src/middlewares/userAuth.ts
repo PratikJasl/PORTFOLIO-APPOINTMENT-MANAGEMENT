@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from "express"
 
 export function userAuth(req: Request, res: Response, next: NextFunction){
     const token = req.cookies.token;
-    console.log("Cntrl in middleware, token:", token);
+    // console.log("Cntrl in middleware, token:", token);
     if(!token){
         res.status(401).json({success: "false", message: "Not Authorized Login Again"});
         return;
@@ -18,11 +18,11 @@ export function userAuth(req: Request, res: Response, next: NextFunction){
 
         
         const tokenDecode = jwt.verify(token, secret);
-        console.log("decoded Token:", tokenDecode);
+        // console.log("decoded Token:", tokenDecode);
 
         if (tokenDecode && typeof tokenDecode === 'object' && 'id' in tokenDecode) {
             req.body.userID = tokenDecode.id;
-            console.log("user ID:", req.body.userID);
+            // console.log("user ID:", req.body.userID);
         }else{
             res.status(401).json({ success: "false", message: "Not Authorized Login Again" });
             return;
