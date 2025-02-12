@@ -137,7 +137,7 @@ export async function sendVerifyOTP(req: Request, res: Response){
         const { userID } = req.body;
 
         if (!userID) {
-            res.status(400).json({ success: false, message: "User ID is required" });
+            res.json({ success: false, message: "User ID is required" });
             return;
         }
         
@@ -148,12 +148,12 @@ export async function sendVerifyOTP(req: Request, res: Response){
         });
         
         if(!user){
-            res.status(400).json({ success: "false", message: "User not found"});
+            res.json({ success: "false", message: "User not found"});
             return;
         }
 
         if(user.isVerified){
-            res.status(400).json({ success: "false", message: "Account already verified"});
+            res.json({ success: "false", message: "Account already verified"});
             return;
         }
 
@@ -196,7 +196,7 @@ export async function verifyEmail(req: Request, res: Response){
     const {userID, OTP} = req.body;
 
     if(!userID || !OTP){
-        res.status(400).json({ success: false, message: "Missing Required Fields" });
+        res.json({ success: false, message: "Missing Required Fields" });
         return;
     }
 
@@ -208,17 +208,17 @@ export async function verifyEmail(req: Request, res: Response){
         });
         console.log(user);
         if(!user){
-            res.status(400).json({ success: "false", message: "User not found"});
+            res.json({ success: "false", message: "User not found"});
             return;
         }
 
         if(user.verifyOtp === '' || user.verifyOtp !== OTP){
-            res.status(400).json({ success: "false", message: "Invalid OTP"});
+            res.json({ success: "false", message: "Invalid OTP"});
             return;
         }
 
         if(user.verifyOtpExpiredAt.getTime() < Date.now()){
-            res.status(400).json({ success: "false", message: "OTP Expired"});
+            res.json({ success: "false", message: "OTP Expired"});
             return;
         }
 
@@ -238,6 +238,113 @@ export async function verifyEmail(req: Request, res: Response){
         return;
     } catch (error) {
         console.log(error);
+        res.status(500).json({ success: "false", message: "Something Went Wrong", detail: error });
+        return;
+    }
+}
+
+export async function sendResetPasswordOTP(req: Request, res: Response){
+    try{
+        const { email } = req.body;
+
+        if (!email) {
+            res.json({ success: false, message: "Email is required" });
+            return;
+        }
+        
+        const user = await prisma.user.findUnique({
+            where:{
+                email: email,
+            }
+        });
+        
+        if(!user){
+            res.json({ success: "false", message: "User not found"});
+            return;
+        }
+
+        const OTP = String(Math.floor(100000 + Math.random() * 900000));
+        const otpExpiry = new Date(Date.now() + 15 * 60 * 1000);
+        
+        await prisma.user.update({
+            where:{
+                email: email,
+            },
+            data:{
+                resetOtp: OTP,
+                resetOtpExpiredAt: otpExpiry,
+            }
+        });
+        
+        const mailOptions = {
+            from: process.env.SENDER_EMAIL,
+            to: user.email,
+            subject: 'Reset Password OTP',
+            text: 
+            `Hi ${user.fullName}👋, 
+             Your reset password OTP is: ${OTP}.
+            
+             Best Regards
+             Pratik Jussal`
+        }
+
+        await transporter.sendMail(mailOptions);
+
+        res.json({success: "true", message: "Reset Password OTP Send Successfully"});
+        return;
+    }catch(error){
+        res.status(500).json({ success: "false", message: "Something Went Wrong", detail: error });
+        return;
+    }
+}
+
+export async function resetPassword(req: Request, res: Response){
+    const {email, OTP, password} = req.body;
+
+    if(!email || !OTP || !password){
+        res.json({ success: false, message: "Missing Required Fields" });
+        return;
+    }
+
+    try {
+        let user = await prisma.user.findUnique({
+            where:{
+                email: email
+            }
+        })
+    
+        if(!user){
+            res.json({ success: false, message: "User Not Found" });
+            return;
+        }
+    
+        if(user.resetOtp === "" || user.resetOtp !== OTP){
+            res.status(401).json({ success: false, message: "Invalid OTP" });
+            return;
+        }
+
+        if(user.resetOtpExpiredAt.getTime() < Date.now()){
+            res.json({ success: "false", message: "OTP Expired"});
+            return;
+        }
+    
+        const date = new Date (Date.now());
+        const newPassword = await bcrypt.hash(password, 10);
+    
+        await prisma.user.update({
+            where:{
+                email: email,
+            },
+            data:{
+                resetOtp: "",
+                resetOtpExpiredAt: date,
+                password: newPassword,
+            }
+        });
+        
+        res.status(200).json({ success: "true", message: "Password has been reset successfully" });
+        return; 
+    } catch (error) {
         res.status(500).json({ success: "false", message: "Something Went Wrong", detail: error });
         return;
     }

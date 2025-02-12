@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { LogIn, LogOut, sendVerifyOTP, SignUp, verifyEmail } from "../controllers/authController";
+import { LogIn, LogOut, resetPassword, sendResetPasswordOTP, sendVerifyOTP, SignUp, verifyEmail } from "../controllers/authController";
 import { validateUserData } from "../middlewares/validateUserData";
 import { userAuth } from "../middlewares/userAuth";
 
@@ -17,5 +17,9 @@ AuthRouter.post('/auth/logout', LogOut);
 AuthRouter.post('/auth/verify-otp', userAuth, sendVerifyOTP);
 
 AuthRouter.post('/auth/verify-account', userAuth, verifyEmail);
+
+AuthRouter.post('/auth/send-reset-otp', sendResetPasswordOTP);
+
+AuthRouter.post('/auth/reset-password', resetPassword);
 
 export {AuthRouter}
