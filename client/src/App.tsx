@@ -1,9 +1,11 @@
 import './App.css'
+//import {Route, Routes} from "react-router-dom"
+import Navbar from './components/navbar'
 
 function App() {
   return (
     <>
-      <h1>React Typescript App</h1>
+      <Navbar/>
     </>
   )
 }
