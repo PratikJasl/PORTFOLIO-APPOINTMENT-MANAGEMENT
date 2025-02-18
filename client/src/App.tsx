@@ -1,12 +1,12 @@
 import './App.css'
 import {Route, Routes} from "react-router-dom"
-import Navbar from './components/navbar'
-import Home from './components/home'
-import About from './components/about'
-import Services from './components/services'
-import Testimonials from './components/testimonials'
-import Community from './components/community'
-import Contact from './components/contact'
+import Navbar from './components/navbar/navbar'
+import Home from './components/sections/home'
+import About from './components/sections/about'
+import Services from './components/sections/services'
+import Testimonials from './components/sections/testimonials'
+import Community from './components/sections/community'
+import Contact from './components/sections/contact'
 
 function App() {
   return (
