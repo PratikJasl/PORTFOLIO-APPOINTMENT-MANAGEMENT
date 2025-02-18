@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { Link } from "react-router-dom"
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
@@ -13,7 +12,7 @@ function Navbar(){
 
     return(
         <>
-            <div className="flex flex-row justify-between shadow-lg w-full p-4 font-serif">
+            <div className="flex flex-row justify-between shadow-lg w-full p-4 mb-5 font-serif fixed bg-white">
                 <div className="text-xl font-semibold italic text-blue-600">
                     Dr Amrita Gosh
                 </div>
@@ -29,22 +28,22 @@ function Navbar(){
                 </div>
                 
                 <div className="hidden lg:flex flex-row list-none gap-4 text-lg">
-                    <Link to="/Home" className="hover:text-blue-600">Home</Link>
-                    <Link to="/About" className="hover:text-blue-600">About</Link>
-                    <Link to="/Services" className="hover:text-blue-600">Services</Link>
-                    <Link to="/Testimonials" className="hover:text-blue-600">Testimonials</Link>
-                    <Link to="/Community" className="hover:text-blue-600">Community</Link>
-                    <Link to="/Contacts" className="hover:text-blue-600">Contacts</Link>
+                    <a href="#home" className="hover:text-blue-600">Home</a>
+                    <a href="#about" className="hover:text-blue-600">About</a>
+                    <a href="#services" className="hover:text-blue-600">Services</a>
+                    <a href="#testimonials" className="hover:text-blue-600">Testimonials</a>
+                    <a href="#community" className="hover:text-blue-600">Community</a>
+                    <a href="#contact" className="hover:text-blue-600">Contacts</a>
                 </div>
 
-                <div className={`lg:hidden ${ menuOpen ? "block absolute top-16 right-0 shadow-lg" : "hidden"}`}>
+                <div className={`lg:hidden ${ menuOpen ? "block absolute top-16 right-0 shadow-lg bg-gray-900 text-white" : "hidden"}`}>
                     <div className="flex flex-col items-center p-4 gap-4">
-                        <Link to="/Home" className="hover:text-blue-300">Home</Link>
-                        <Link to="/About" className="hover:text-blue-300">About</Link>
-                        <Link to="/Services" className="hover:text-blue-300">Services</Link>
-                        <Link to="/Testimonials" className="hover:text-blue-300">Testimonials</Link>
-                        <Link to="//Community" className="hover:text-blue-300">Community</Link>
-                        <Link to="/Contacts" className="hover:text-blue-300">Contacts</Link>
+                        <a href="#home" className="hover:text-blue-600">Home</a>
+                        <a href="#about" className="hover:text-blue-600">About</a>
+                        <a href="#services" className="hover:text-blue-600">Services</a>
+                        <a href="#testimonials" className="hover:text-blue-600">Testimonials</a>
+                        <a href="#community" className="hover:text-blue-600">Community</a>
+                        <a href="#contact" className="hover:text-blue-600">Contacts</a>
                     </div>
                 </div>
             </div>
