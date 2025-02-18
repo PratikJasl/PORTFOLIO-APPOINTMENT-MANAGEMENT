@@ -31,20 +31,20 @@ function Navbar(){
                 <div className="hidden lg:flex flex-row list-none gap-4 text-lg">
                     <Link to="/Home" className="hover:text-blue-600">Home</Link>
                     <Link to="/About" className="hover:text-blue-600">About</Link>
-                    <Link to="/Appointment" className="hover:text-blue-600">Services</Link>
-                    <Link to="/Appointment" className="hover:text-blue-600">Testimonials</Link>
-                    <Link to="/Appointment" className="hover:text-blue-600">Community</Link>
-                    <Link to="/Appointment" className="hover:text-blue-600">Contacts</Link>
+                    <Link to="/Services" className="hover:text-blue-600">Services</Link>
+                    <Link to="/Testimonials" className="hover:text-blue-600">Testimonials</Link>
+                    <Link to="/Community" className="hover:text-blue-600">Community</Link>
+                    <Link to="/Contacts" className="hover:text-blue-600">Contacts</Link>
                 </div>
 
                 <div className={`lg:hidden ${ menuOpen ? "block absolute top-16 right-0 shadow-lg" : "hidden"}`}>
                     <div className="flex flex-col items-center p-4 gap-4">
                         <Link to="/Home" className="hover:text-blue-300">Home</Link>
                         <Link to="/About" className="hover:text-blue-300">About</Link>
-                        <Link to="/Appointment" className="hover:text-blue-300">Services</Link>
-                        <Link to="/Appointment" className="hover:text-blue-300">Testimonials</Link>
-                        <Link to="/Appointment" className="hover:text-blue-300">Community</Link>
-                        <Link to="/Appointment" className="hover:text-blue-300">Contacts</Link>
+                        <Link to="/Services" className="hover:text-blue-300">Services</Link>
+                        <Link to="/Testimonials" className="hover:text-blue-300">Testimonials</Link>
+                        <Link to="//Community" className="hover:text-blue-300">Community</Link>
+                        <Link to="/Contacts" className="hover:text-blue-300">Contacts</Link>
                     </div>
                 </div>
             </div>
