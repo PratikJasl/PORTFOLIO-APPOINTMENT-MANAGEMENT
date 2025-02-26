@@ -4,15 +4,11 @@ function Home(){
         <section id="home" className="mb-20 scroll-smooth">
             <div className="lg:flex lg:flex-row lg:items-center lg:gap-5 m-10">
 
-            <div className="lg:h-110 lg:w-400 mb-5 border-10 border-white rounded-lg shadow-xl shadow-gray-600 overflow-hidden">
-                <img src="./src/assets/Amrita_Gosh.png" className="h-full w-full object-cover hover:scale-120 transition-transform duration-600 ease-in-out" />
-            </div>
+                <div className="lg:h-110 lg:w-400 mb-5 border-10 border-white rounded-lg shadow-xl shadow-gray-600">
+                    <img src="./src/assets/Amrita_Gosh.png" className="h-full w-full object-cover hover:scale-110 transition-transform duration-600 ease-in-out" />
+                </div>
 
-                {/* <img 
-                    src="./src/assets/Amrita_Gosh.png" className=" lg:h-110 lg:w-120 mb-5 border-10 border-white rounded-lg 
-                    shadow-xl shadow-gray-600 hover:scale-105 transition-transform duration-600 ease-in-out">
-                </img> */}
-                <div className="text-center font-serif flex flex-col gap-5">
+                <div className="text-center font-serif flex flex-col gap-5 items-center">
                     <p className="lg:text-4xl text-xl">Meet</p>
                     <p className="lg:text-5xl text-2xl">Dr.Amrita Ghosh</p>
                     <p className="text-justify"> Dr.Amrita Ghosh has completed her graduation from Govt. Medical College Nagpur, 
@@ -25,7 +21,19 @@ function Home(){
                         Her main areas of interest lies in type 1diabetes and new technology related to diabetes management, gestation diabetes.
                         She is actively involved in Type 1 Diabetes advocacy and support groups. She has publication is international journals and member of international bodies.
                     </p>
+
+                    <div className="flex flex-row gap-5 w-full justify-center">
+                        <a href=""><i className="fab fa-instagram text-3xl text-red-500 hover:scale-150 transition transform duration-500 ease-in-out"></i></a>
+                        <a href=""><i className="fab fa-linkedin text-3xl text-blue-500 hover:scale-150 transition transform duration-500 ease-in-out"></i></a>
+                        <a href=""><i className="fab fa-youtube text-3xl text-red-500 hover:scale-150 transition transform duration-500 ease-in-out"></i></a> 
+                    </div>
+                    
+                    <button 
+                        className="w-fit bg-blue-500 text-white text-xl font-semibold p-2 rounded-lg hover:scale-120 transition transform duration-500 ease-in-out">
+                        Book an Appointemnt
+                    </button>
                 </div>
+
             </div>
         </section>
     )
