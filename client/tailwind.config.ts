@@ -1,10 +1,14 @@
+import scrollbar from 'tailwind-scrollbar';
+
 export default {
-    theme: {
-        extend: {
-            fontFamily: {
-                jost: ['Jost', 'sans-serif'],
-            },
-        },
+  theme: {
+    extend: {
+      fontFamily: {
+        jost: ['Jost', 'sans-serif'],
+      },
     },
-    plugins: [],
+  },
+  plugins: [
+    scrollbar,
+  ],
 };

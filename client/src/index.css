@@ -7,5 +7,30 @@ html {
   
 }
 
+@layer utilities {
+  .scrollbar-custom {
+    scrollbar-width: thin;
+    scrollbar-color: #4b5563 #f3f4f6;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollbar-custom::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .scrollbar-custom::-webkit-scrollbar-thumb {
+    background-color: #4b5563;
+    border-radius: 10px;
+    border: 2px solid #f3f4f6;
+  }
+
+  .scrollbar-custom::-webkit-scrollbar-track {
+    background-color: #f3f4f6;
+    border-radius: 10px;
+  }
+}
 
 
