@@ -12,9 +12,9 @@ function Navbar(){
 
     return(
         <>
-            <div className="flex flex-row justify-between shadow-lg w-full p-4 mb-5 font-serif fixed bg-white">
+            <div className="flex flex-row justify-between shadow-lg w-full p-4 font-serif fixed bg-white">
                 
-                <div className="text-xl font-semibold italic text-blue-600">
+                <div className="text-xl font-semibold italic text-black">
                     Dr Amrita Gosh
                 </div>
 
