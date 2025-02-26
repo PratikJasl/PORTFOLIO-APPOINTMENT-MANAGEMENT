@@ -2,6 +2,7 @@
 function Services(){
     return(
         <section id="services" className="mb-20 scroll-smooth flex flex-col items-center w-full">
+            
             <h1 className="text-4xl font-serif">Services</h1>
 
             <div className="flex flex-col flex-wrap justify-center lg:flex lg:flex-row gap-10 m-10 ">
