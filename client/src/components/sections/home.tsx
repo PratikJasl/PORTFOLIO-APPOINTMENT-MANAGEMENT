@@ -3,7 +3,15 @@ function Home(){
     return(
         <section id="home" className="mb-20 scroll-smooth">
             <div className="lg:flex lg:flex-row lg:items-center lg:gap-5 m-10">
-                <img src="./src/assets/Amrita_Gosh.png" className=" lg:h-110 lg:w-120 mb-5 border-10 border-white rounded-lg shadow-xl shadow-gray-600"></img>
+
+            <div className="lg:h-110 lg:w-400 mb-5 border-10 border-white rounded-lg shadow-xl shadow-gray-600 overflow-hidden">
+                <img src="./src/assets/Amrita_Gosh.png" className="h-full w-full object-cover hover:scale-120 transition-transform duration-600 ease-in-out" />
+            </div>
+
+                {/* <img 
+                    src="./src/assets/Amrita_Gosh.png" className=" lg:h-110 lg:w-120 mb-5 border-10 border-white rounded-lg 
+                    shadow-xl shadow-gray-600 hover:scale-105 transition-transform duration-600 ease-in-out">
+                </img> */}
                 <div className="text-center font-serif flex flex-col gap-5">
                     <p className="lg:text-4xl text-xl">Meet</p>
                     <p className="lg:text-5xl text-2xl">Dr.Amrita Ghosh</p>
