@@ -1,10 +1,10 @@
 
 function Home(){
     return(
-        <section id="home" className="mb-20 scroll-smooth">
+        <section id="home" className="mb-20 scroll-smooth z-0">
             <div className="lg:flex lg:flex-row lg:items-center lg:gap-5 m-10">
 
-                <div className="lg:h-110 lg:w-400 mb-5 border-10 border-white rounded-lg shadow-xl shadow-gray-600">
+                <div className="lg:h-120 lg:w-400 mb-10 border-10 border-white rounded-lg shadow-xl shadow-gray-600">
                     <img src="./src/assets/Amrita_Gosh.png" className="h-full w-full object-cover hover:scale-110 transition-transform duration-600 ease-in-out" />
                 </div>
 
@@ -27,9 +27,13 @@ function Home(){
                         <a href=""><i className="fab fa-linkedin text-3xl text-blue-500 hover:scale-150 transition transform duration-500 ease-in-out"></i></a>
                         <a href=""><i className="fab fa-youtube text-3xl text-red-500 hover:scale-150 transition transform duration-500 ease-in-out"></i></a> 
                     </div>
-                    
+
+                    <div>
+                        <img src="./src/assets/signature.png" alt="" />
+                    </div>
+
                     <button 
-                        className="w-fit bg-blue-500 text-white text-xl font-semibold p-2 rounded-lg hover:scale-120 transition transform duration-500 ease-in-out">
+                        className="w-fit bg-yellow-500 text-white text-xl p-2 rounded-lg hover:scale-120 transition transform duration-500 ease-in-out">
                         Book an Appointemnt
                     </button>
                 </div>

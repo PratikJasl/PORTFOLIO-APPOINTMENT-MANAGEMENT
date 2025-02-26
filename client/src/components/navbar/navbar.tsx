@@ -12,7 +12,7 @@ function Navbar(){
 
     return(
         <>
-            <div className="flex flex-row justify-between shadow-lg w-full p-4 font-serif fixed bg-white">
+            <div className="flex flex-row justify-between shadow-lg w-full p-4 font-serif fixed bg-white z-10">
                 
                 <div className="text-xl font-semibold italic text-black">
                     Dr Amrita Gosh
@@ -30,7 +30,6 @@ function Navbar(){
                 
                 <div className="hidden lg:flex flex-row list-none gap-4 text-lg">
                     <a href="#home" className="hover:text-blue-600">Home</a>
-                    <a href="#about" className="hover:text-blue-600">About</a>
                     <a href="#services" className="hover:text-blue-600">Services</a>
                     <a href="#testimonials" className="hover:text-blue-600">Testimonials</a>
                     <a href="#community" className="hover:text-blue-600">Community</a>
@@ -40,7 +39,6 @@ function Navbar(){
                 <div className={`lg:hidden ${ menuOpen ? "block absolute top-16 right-0 shadow-lg bg-gray-900 text-white" : "hidden"}`}>
                     <div className="flex flex-col items-center p-4 gap-4">
                         <a href="#home" className="hover:text-blue-600">Home</a>
-                        <a href="#about" className="hover:text-blue-600">About</a>
                         <a href="#services" className="hover:text-blue-600">Services</a>
                         <a href="#testimonials" className="hover:text-blue-600">Testimonials</a>
                         <a href="#community" className="hover:text-blue-600">Community</a>
