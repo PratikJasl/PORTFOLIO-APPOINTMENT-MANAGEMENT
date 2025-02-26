@@ -1,7 +1,7 @@
 
 function Home(){
     return(
-        <section id="home" className="mb-20 scroll-smooth z-0">
+        <section id="home" className="mb-30 scroll-smooth z-0">
             <div className="lg:flex lg:flex-row lg:items-center lg:gap-5 m-10">
 
                 <div className="lg:h-120 lg:w-400 mb-10 border-10 border-white rounded-lg shadow-xl shadow-gray-600">
