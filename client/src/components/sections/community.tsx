@@ -38,18 +38,18 @@ function Community(){
     }
 
     return(
-        <section id="community" className="mb-20 p-10 text-center">
+        <section id="community" className="mb-20 lg:p-10 text-center">
             <h1 className="text-4xl font-serif mb-2">Community</h1>
             <h2 className="text-2xl font-serif italic"> My <span className="text-blue-500 text-3xl">Online Presence</span></h2>
 
-            <div className="flex flex-row items-center shadow-lg rounded-lg p-10 m-5 relative">
+            <div className="flex flex-row items-center shadow-lg rounded-lg lg:p-10 min-h-64 p-5 m-5 relative">
                 <iframe 
                     width="100%" 
-                    height="500" 
+                    height="auto" 
                     src= {updateVideo()} 
                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
                     allowFullScreen
-                    className="rounded-lg">
+                    className="rounded-lg lg:h-120 h-64">
                 </iframe>
 
                 
@@ -62,7 +62,6 @@ function Community(){
                 </button>
                 
             </div>
-
         </section>
     )
 }
