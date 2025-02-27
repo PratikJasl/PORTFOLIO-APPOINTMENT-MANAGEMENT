@@ -4,7 +4,7 @@ function Home(){
         <section id="home" className="mb-30 scroll-smooth z-0">
             <div className="lg:flex lg:flex-row lg:items-center lg:gap-5 m-10">
 
-                <div className="lg:h-120 lg:w-400 mb-10 border-10 border-white rounded-lg shadow-xl shadow-gray-600">
+                <div className="lg:h-120 lg:w-400 min-h-96 mb-10 border-10 border-white rounded-lg shadow-xl shadow-gray-600">
                     <img src="./src/assets/Amrita_Gosh.png" className="h-full w-full object-cover hover:scale-110 transition-transform duration-600 ease-in-out" />
                 </div>
 
