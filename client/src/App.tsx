@@ -2,7 +2,6 @@ import './App.css'
 import {Route, Routes} from "react-router-dom"
 import Navbar from './components/navbar/navbar'
 import Home from './components/sections/home'
-import About from './components/sections/about'
 import Services from './components/sections/services'
 import Testimonials from './components/sections/testimonials'
 import Community from './components/sections/community'

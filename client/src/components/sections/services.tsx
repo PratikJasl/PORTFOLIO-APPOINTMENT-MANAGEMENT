@@ -12,10 +12,10 @@ function Services(){
                 >
                     <div className="text-xl font-bold font-serif">Diabetes Management</div>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tempus nunc sit amet risus commodo aliquet et sed turpis.</p>
-                    <button 
+                    {/* <button 
                         className="bg-yellow-500 text-white text-lg p-2 w-fit rounded-lg hover:bg-amber-500">
                         Book Appointemnt
-                    </button>
+                    </button> */}
                 </div>
 
                 <div className="shadow-lg shadow-gray-400 p-4 h-70 w-70 hover:scale-110 transition transform duration-400 ease-in-out rounded-lg
@@ -23,10 +23,10 @@ function Services(){
                 >
                     <div className="text-xl font-bold font-serif">Diabetes Management</div>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tempus nunc sit amet risus commodo aliquet et sed turpis.</p>
-                    <button 
+                    {/* <button 
                         className="bg-yellow-500 text-white text-lg p-2 w-fit rounded-lg hover:bg-amber-500">
                         Book Appointemnt
-                    </button>
+                    </button> */}
                 </div>
 
                 <div className="shadow-lg shadow-gray-400 p-4 h-70 w-70 hover:scale-110 transition transform duration-400 ease-in-out rounded-lg
@@ -34,10 +34,10 @@ function Services(){
                 >
                     <div className="text-xl font-bold font-serif">Diabetes Management</div>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tempus nunc sit amet risus commodo aliquet et sed turpis.</p>
-                    <button 
+                    {/* <button 
                         className="bg-yellow-500 text-white text-lg p-2 w-fit rounded-lg hover:bg-amber-500">
                         Book Appointemnt
-                    </button>
+                    </button> */}
                 </div>
 
                 <div className="shadow-lg shadow-gray-400 p-4 h-70 w-70 hover:scale-110 transition transform duration-400 ease-in-out rounded-lg
@@ -45,10 +45,10 @@ function Services(){
                 >
                     <div className="text-xl font-bold font-serif">Diabetes Management</div>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tempus nunc sit amet risus commodo aliquet et sed turpis.</p>
-                    <button 
+                    {/* <button 
                         className="bg-yellow-500 text-white text-lg p-2 w-fit rounded-lg hover:bg-amber-500">
                         Book Appointemnt
-                    </button>
+                    </button> */}
                 </div>
 
                 <div className="shadow-lg shadow-gray-400 p-4 h-70 w-70 hover:scale-110 transition transform duration-400 ease-in-out rounded-lg
@@ -56,10 +56,10 @@ function Services(){
                 >
                     <div className="text-xl font-bold font-serif">Diabetes Management</div>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tempus nunc sit amet risus commodo aliquet et sed turpis.</p>
-                    <button 
+                    {/* <button 
                         className="bg-yellow-500 text-white text-lg p-2 w-fit rounded-lg hover:bg-amber-500">
                         Book Appointemnt
-                    </button>
+                    </button> */}
                 </div>
 
                 <div className="shadow-lg shadow-gray-400 p-4 h-70 w-70 hover:scale-110 transition transform duration-400 ease-in-out rounded-lg
@@ -67,10 +67,10 @@ function Services(){
                 >
                     <div className="text-xl font-bold font-serif">Diabetes Management</div>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tempus nunc sit amet risus commodo aliquet et sed turpis.</p>
-                    <button 
+                    {/* <button 
                         className="bg-yellow-500 text-white text-lg p-2 w-fit rounded-lg hover:bg-amber-500">
                         Book Appointemnt
-                    </button>
+                    </button> */}
                 </div>
 
             </div>
