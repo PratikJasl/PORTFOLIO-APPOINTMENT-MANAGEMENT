@@ -3,7 +3,7 @@ import { PhoneIcon } from "@heroicons/react/24/outline";
 
 function Contact(){
     return(
-        <section id="contact" className="flex flex-col gap-5 scroll-smooth lg:p-10 p-5 text-center shadow-2xl shadow-black w-full bg-amber-50">
+        <section id="contact" className="flex flex-col gap-5 scroll-smooth lg:p-10 p-5 text-center shadow-2xl shadow-black w-full">
             
             <div className="flex flex-row gap-5 w-full justify-center">
                 <a href=""><i className="fab fa-instagram text-3xl text-red-500 hover:scale-150 transition transform duration-500 ease-in-out"></i></a>

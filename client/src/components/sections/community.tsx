@@ -6,12 +6,11 @@ import { ChevronRightIcon } from "@heroicons/react/24/outline";
 
 
 function Community(){
-    const [videoLinks, setVideoLinks] = useState<string[]>([]);
+    const [videoLinks, setVideoLinks] = useState<string[]>(["HmzcfFZrz90"]);
     const [currentIndex, setCurrentIndex] = useState<number>(0);
 
     useEffect(() => {
         setVideoLinks([
-            "HmzcfFZrz90",
             "VIvBSqzr2mY",
             "XRnI36YcWpM",
             "3OJXWGhHJAo",
